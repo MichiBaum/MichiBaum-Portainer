@@ -1,1 +1,1 @@
-docker stack deploy -c docker-compose.yml portainer
+docker stack deploy -c docker-compose.yml --prune portainer
