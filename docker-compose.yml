@@ -2,17 +2,17 @@ version: '3.7'
 
 networks:
   michibaum-network:
+    driver: overlay
 
 services:
   portainer:
     image: portainer/portainer-ce
-    restart: always
-    expose:
-      - 9000
+    ports:
+      - 9000:9000
     command: -H unix:///var/run/docker.sock
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-#      - ${PORTAINER_HOST_PATH}:/data  IMPLEMENT WITH A DOCKER PLUGIN
+      - /docker/MichiBaum-Portainer/data:/data
     networks:
       - michibaum-network
     deploy:
@@ -30,3 +30,5 @@ services:
       restart_policy:
         max_attempts: 20
         window: 10m
+      placement:
+        constraints: [node.labels.manager == true ] # docker node update --label-add manager=true <node id>
