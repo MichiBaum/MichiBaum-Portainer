@@ -10,8 +10,8 @@ services:
     expose:
       - 9000
     command: -H unix:///var/run/docker.sock
-#    volumes:  IMPLEMENT WITH A DOCKER PLUGIN
-#      - /var/run/docker.sock:/var/run/docker.sock
-#      - ${PORTAINER_HOST_PATH}:/data
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+#      - ${PORTAINER_HOST_PATH}:/data  IMPLEMENT WITH A DOCKER PLUGIN
     networks:
       - michibaum-network
