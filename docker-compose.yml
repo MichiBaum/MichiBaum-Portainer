@@ -1,0 +1,17 @@
+version: '3.7'
+
+networks:
+  michibaum-network:
+
+services:
+  portainer:
+    image: portainer/portainer-ce
+    restart: always
+    expose:
+      - 9000
+    command: -H unix:///var/run/docker.sock
+#    volumes:  IMPLEMENT WITH A DOCKER PLUGIN
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - ${PORTAINER_HOST_PATH}:/data
+    networks:
+      - michibaum-network
